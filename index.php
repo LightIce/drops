@@ -7,20 +7,31 @@
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="navbar-inner">
 			<!-- HDUISA -->
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-			</button>
+
 			<div class="navbar-header">
 			<a class="navbar-brand" href="#">HDUISA</a>
 			</div>
 
-      		<!-- login and singin -->
-      		<ul class="nav navbar-nav navbar-right">
-      			<li><a href="login.php">Login</a></li>
-      			
-      			<li><a href="Signup.php">Sign up</a></li>	
-      		</ul>
+      		<!-- login and signin -->
+      		<?php
+      			if (!isset($_SESSION['session_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])) {
+      				echo <<< HTML
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="login.php">Login</a></li>
+							<li><a href="signup.php">Sign up</a></li>	
+						</ul>
+HTML;
+      			}
+      			else {
+      				$user_name = $_SESSION['user_name'];
+      				echo <<< HTML
+      				<ul class="nav navbar-nav navbar-right">
+      				<li><a href="#">Welcome, $user_name</a></li>
+      				<li><a href="logout.php">Logout</a></li>
+      				</ul>
+HTML;
+      			}
+      		?>
 			
 			<!-- Search -->
 			<form class="navbar-form navbar-left" role="search">
@@ -58,5 +69,4 @@
 
 
 </div><!-- /.container -->
-
 <?php require_once("./footer.php"); ?>

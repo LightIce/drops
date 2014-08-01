@@ -81,7 +81,7 @@
 
 	  			<!-- button -->
 	  			<div class="form-group">
-    				<div class="col-sm-offset-5 col-sm-10">
+    				<div class="col-sm-offset-5 col-sm-5">
 						<button type="button" class="btn btn-success" onclick="SubmitForm()">Sign up</button>&nbsp;&nbsp;&nbsp;&nbsp;
         				<!--<button type="button" class="btn btn-primary">Sign up</button>&nbsp;&nbsp;&nbsp;-->
         				<button type="button" class="btn btn-link"><a href="login.php">Already have a account?</a></button>
@@ -133,8 +133,7 @@
 			exit;
 		}
 
-		// check if email vaild
-		
+		// check if email vaild		
 		if (!preg_match("/^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/", $email)) {
 			echo "<div class=\"alert alert-danger\">Please input a valid email.</div>";
 			exit;
@@ -153,12 +152,20 @@
 
 		// insert into database
 		$stmt = $db->prepare("INSERT INTO `tb_drops_users` (DropsUserID, DropsUserPassword, DropsUserName, DropsUserVIP) VALUES (?,?,?,?)");
-		// $stmt->bindParam(1, $id);
-		// $stmt->bindParam(2, $password);
-		// $stmt->bindParam(3, $username);
-		// $stmt->bindParam(4, $vip);
 		$stmt->bind_param("issi", $id, $password, $username, $vip);
-		$stmt->execute();
+		$affectRows = $stmt->execute();
+
+		// check if sign up success.
+		if ($affectRows == 1) {
+			echo "<div class=\"alert alert-success\">Sign up success. Go to home page in 3s or <a href=\"index.php\">CLICK ME</a></div>";
+			echo "<script>DelayURL('index.php', 3000)</script>";
+			exit;
+		}
+		else {
+			echo "<div class=\"alert alert-danger\">Something going wrong. Please try later.</div>";
+			exit;
+		}
+		
 
 	}
 ?>

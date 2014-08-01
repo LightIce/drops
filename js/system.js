@@ -9,3 +9,7 @@ function SubmitLoginForm() {
 	document.getElementById("password").value = hex_md5(document.getElementById("password").value);
 	this.login.submit();
 }
+
+function DelayURL(url, time) {
+	setTimeout("top.location.href='" + url + "'", time);
+}

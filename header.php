@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html>
 <head>
 	<title>HDUISA PRIVATE LIBRARY</title>

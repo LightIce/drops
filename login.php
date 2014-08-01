@@ -2,6 +2,13 @@
 <script src="./js/md5.js"></script>
 <script src="./js/system.js"></script>
 
+<?php
+	if (isset($_SESSION['session_id']) && isset($_SESSION['user_id']) && isset($_SESSION['user_name'])) {
+		header("Location: index.php");
+	}
+?>
+
+
 <div class="container">
 	<div class="jumbotron" style="color: white; background-color: #428BCA;" align="center">
 		<h1>HDUISA Private Library</h1>
@@ -10,10 +17,6 @@
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="navbar-inner">
 			<!-- HDUISA -->
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-			</button>
 			<div class="navbar-header">
 			<a class="navbar-brand" href="index.php">HDUISA</a>
 			</div>
@@ -58,7 +61,7 @@
 
 	  			<!-- button -->
 	  			<div class="form-group">
-    				<div class="col-sm-offset-4 col-sm-10">
+    				<div class="col-sm-offset-4 col-sm-5">
 						<button type="button" class="btn btn-success" onclick="SubmitLoginForm()">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         				<!-- <button type="button" class="btn btn-primary"> --><a class="btn btn-primary" href="signup.php">Sign up</a><!-- </button> -->&nbsp;&nbsp;&nbsp;
         				<button type="button" class="btn btn-link">Forget password?</button>
@@ -103,7 +106,12 @@
 			exit;
 		}
 		else {
-			// start session
+			// set session
+			$_SESSION['user_id'] = $row['DropsUserID'];
+			$_SESSION['user_name'] = $row['DropsUserName'];
+			$_SESSION['session_id'] = md5($row['DropsUserID'].$row['DropsUserName'].$row['DropsUserPassword']);
+			echo "<div class=\"alert alert-success\">Login success. Go to home page in 3s or <a href=\"index.php\">CLICK ME</a></div>";
+			echo "<script>DelayURL('index.php', 3000)</script>";
 		}
 
 	}
