@@ -1,8 +1,8 @@
 <?php require_once("./header.php"); ?>
 
 <div class="container">
-	<div class="jumbotron" style="color: white; background-color: #428BCA;">
-		<h1>Welcome to HDUISA Private Library</h1>
+	<div class="jumbotron" style="color: white; background-color: #428BCA;" align="center">
+		<h1>HDUISA Private Library</h1>
 	</div>
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="navbar-inner">

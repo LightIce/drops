@@ -3,9 +3,9 @@
 	$db_host = 'localhost';
 	$db_username = 'root';
 	$db_password = '';
-	$db_database = 'DB_DROPS';
+	$db_database = 'db_drops';
 	
-	@$db = new mysqli($host, $db_username, $db_password, $db_database);
+	$db = new mysqli($db_host, $db_username, $db_password, $db_database);
 	if (mysqli_connect_error()) {
 	 	echo "Connect to database unsuccess.";
 	 	exit;

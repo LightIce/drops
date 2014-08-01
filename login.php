@@ -1,8 +1,10 @@
 <?php require_once("header.php");?>
+<script src="./js/md5.js"></script>
+<script src="./js/system.js"></script>
 
 <div class="container">
-	<div class="jumbotron" style="color: white; background-color: #428BCA;">
-		<h1>Welcome to HDUISA Private Library</h1>
+	<div class="jumbotron" style="color: white; background-color: #428BCA;" align="center">
+		<h1>HDUISA Private Library</h1>
 	</div>
 
 	<nav class="navbar navbar-default" role="navigation">
@@ -39,7 +41,7 @@
 			<h3 class="panel-title">User login</h3>
 	    </div>
 	  	<div class="panel-body">
-	  		<form class="form-horizontal" role="form" action="" method="POST">
+	  		<form class="form-horizontal" role="form" action="" method="POST" name="login">
 	  			<!-- input -->
 	  			<div class="form-group">
 	  				<br />
@@ -57,7 +59,7 @@
 	  			<!-- button -->
 	  			<div class="form-group">
     				<div class="col-sm-offset-4 col-sm-10">
-						<button type="submit" class="btn btn-success">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn btn-success" onclick="SubmitLoginForm()">Login</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         				<!-- <button type="button" class="btn btn-primary"> --><a class="btn btn-primary" href="signup.php">Sign up</a><!-- </button> -->&nbsp;&nbsp;&nbsp;
         				<button type="button" class="btn btn-link">Forget password?</button>
       				</div>
@@ -68,10 +70,15 @@
 	   </div> <!-- panel body -->
 	</div> <!-- /.panel -->
 
-</div><!-- /.container -->
+
 
 <?php
 	require_once("./config/config.php");
+
+	if (!isset($_POST['username']) || !isset($_POST['password'])) {
+		exit;
+	}
+
 	$username = SqlGuard($_POST['username'], $db);
 	$password = SqlGuard($_POST['password'], $db);
 
@@ -80,19 +87,19 @@
 
 	if (!$result) {
 		// no result
-		echo "<div class=\"alert alert-danger\" role="alert">Wrong username or password.</div>";
+		echo "<div class=\"alert alert-danger\" role=\"alert\">Wrong username or password.</div>";
 		exit;
 	}
 	else {
 		$rows = $result->num_rows;
 		if ($rows != 1) {
 			// have more than one result
-			echo "<div class=\"alert alert-danger\" role="alert">Wrong username or password.</div>";
+			echo "<div class=\"alert alert-danger\" role=\"alert\">Wrong username or password.</div>";
 			exit;
 		}
 		$row = $result->fetch_assoc();
 		if ($row['DropsUserPassword'] != $password) {
-			echo "<div class=\"alert alert-danger\" role="alert">Wrong username or password.</div>";
+			echo "<div class=\"alert alert-danger\" role=\"alert\">Wrong username or password.</div>";
 			exit;
 		}
 		else {
@@ -103,4 +110,7 @@
 
 ?>
 
+
+
+</div><!-- /.container -->
 <?php require_once("footer.php");?>

@@ -1,9 +1,11 @@
 <?php require_once("header.php");?>
+<script src="./js/md5.js"></script>
+<script src="./js/system.js"></script>
 
 <div class="container">
 	<!-- title -->
-	<div class="jumbotron" style="color: white; background-color: #428BCA;">
-		<h1>Welcome to HDUISA Private Library</h1>
+	<div class="jumbotron" style="color: white; background-color: #428BCA;" align="center">
+		<h1>HDUISA Private Library</h1>
 	</div>
 
 	<!-- navbar -->
@@ -30,7 +32,7 @@
         		<div class="form-group">
           		<input type="text" class="form-control" placeholder="search files...">
         		</div>
-        		<button type="submit" class="btn btn-default">Submit</button>
+        		<button type="button" class="btn btn-default">Submit</button>
       		</form>
 
 		</div><!-- /.container-fluid -->
@@ -42,7 +44,7 @@
 			<h3 class="panel-title">Sign up</h3>
 	    </div>
 	  	<div class="panel-body">
-	  		<form class="form-horizontal" role="form" action="" method="POST">
+	  		<form class="form-horizontal" role="form" action="" method="POST" name="signup">
 	  			<!-- input -->
 	  			<div class="form-group">
 	  				<!-- username -->
@@ -80,7 +82,7 @@
 	  			<!-- button -->
 	  			<div class="form-group">
     				<div class="col-sm-offset-5 col-sm-10">
-						<button type="submit" class="btn btn-success">Sign up</button>&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn btn-success" onclick="SubmitForm()">Sign up</button>&nbsp;&nbsp;&nbsp;&nbsp;
         				<!--<button type="button" class="btn btn-primary">Sign up</button>&nbsp;&nbsp;&nbsp;-->
         				<button type="button" class="btn btn-link"><a href="login.php">Already have a account?</a></button>
 					</div>
@@ -159,8 +161,6 @@
 		$stmt->execute();
 
 	}
-
-
 ?>
 
 </div> <!-- /.container -->
@@ -174,3 +174,5 @@
 
 
 ?>
+
+
