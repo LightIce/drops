@@ -12,10 +12,18 @@
 			<a class="navbar-brand" href="#">HDUISA</a>
 			</div>
 
+			<!-- Search -->
+			<form class="navbar-form navbar-left" role="search">
+        		<div class="form-group">
+          		<input type="text" class="form-control" placeholder="search files...">
+        		</div>
+        		<button type="submit" class="btn btn-default">Submit</button>
+      		</form>
+
       		<!-- login and signin -->
       		<?php
-      			if (!isset($_SESSION['session_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])) {
-      				echo <<< HTML
+				if (!isset($_SESSION['session_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])) {
+					echo <<< HTML
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="login.php">Login</a></li>
 							<li><a href="signup.php">Sign up</a></li>	
@@ -26,20 +34,18 @@ HTML;
       				$user_name = $_SESSION['user_name'];
       				echo <<< HTML
       				<ul class="nav navbar-nav navbar-right">
-      				<li><a href="#">Welcome, $user_name</a></li>
-      				<li><a href="logout.php">Logout</a></li>
+	      				<li><a href="#">$user_name</a></li>
+	      				<li><a href="#">Person Center</a></li>
+	      				<li><a href="logout.php">Logout</a></li>
+      				</ul>
+      				<ul class="nav navbar-nav navbar-left">
+      					<li><a href="#">All resource</a></li>
       				</ul>
 HTML;
       			}
       		?>
 			
-			<!-- Search -->
-			<form class="navbar-form navbar-left" role="search">
-        		<div class="form-group">
-          		<input type="text" class="form-control" placeholder="search files...">
-        		</div>
-        		<button type="submit" class="btn btn-default">Submit</button>
-      		</form>
+
 
 		</div><!-- /.container-fluid -->
 	</nav>

@@ -22,11 +22,25 @@
 			</div>
 
       		<!-- login and singin -->
-      		<ul class="nav navbar-nav navbar-right">
-      			<li><a href="login.php">Login</a></li>
-      			
-      			<li><a href="signup.php">Sign up</a></li>	
-      		</ul>
+      		<?php
+				if (!isset($_SESSION['session_id']) || !isset($_SESSION['user_id']) || !isset($_SESSION['user_name'])) {
+					echo <<< HTML
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="login.php">Login</a></li>
+							<li><a href="signup.php">Sign up</a></li>	
+						</ul>
+HTML;
+      			}
+      			else {
+      				$user_name = $_SESSION['user_name'];
+      				echo <<< HTML
+      				<ul class="nav navbar-nav navbar-right">
+      				<li><a href="#">Welcome, $user_name</a></li>
+      				<li><a href="logout.php">Logout</a></li>
+      				</ul>
+HTML;
+      			}
+      		?>
 			
 			<!-- Search -->
 			<form class="navbar-form navbar-left" role="search">
